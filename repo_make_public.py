@@ -11,8 +11,17 @@ def get_repositories():
         'Authorization': f'token {token}',
         'Accept': 'application/vnd.github.v3+json'
     }
-    response = requests.get(url, headers=headers)
-    return response.json()
+    repositories = []
+    while url:
+        response = requests.get(url, headers=headers)
+        repositories.extend(response.json())
+        url = None
+        if 'Link' in response.headers:
+            links = response.headers['Link'].split(', ')
+            for link in links:
+                if 'rel="next"' in link:
+                    url = link.split(';')[0][1:-1]
+    return repositories
 
 # Make repositories public
 def make_public(repositories):
@@ -34,4 +43,5 @@ def make_public(repositories):
 
 if __name__ == '__main__':
     repositories = get_repositories()
+    print(f"Repo Count: {len(repositories)}")
     make_public(repositories)
