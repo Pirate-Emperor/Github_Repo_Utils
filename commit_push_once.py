@@ -160,9 +160,11 @@ def traverse_and_commit(repo_dir, ignore_list):
             git_add_commit_push(repo_dir, relative_file_path, commit_message)
 
 if __name__ == "__main__":
-    github_repo_url = "https://github.com/Pirate-Emperor/IngredientMix.git"
-    directory_to_commit = r"D:\Z_PROJECTS\Personal_Projects\Completed\IngredientMix"
-    COMMIT_DATE = "Sat Jul 03 02:06 2024 +0100"
+    github_repo_url = "https://github.com/Pirate-Emperor/CodeMuse.git"
+    directory_to_commit = r"D:\Z_PROJECTS\Personal_Projects\Ongoing\CodeMuse"
+    COMMIT_DATE = "Sat Aug 27 18:21 2024 +0100"
+    lower_minute = 471
+    upper_minute = 479
     ignore_list = ["commit_push_once.py"]
     setup_git_repository(github_repo_url)
     traverse_and_commit(directory_to_commit, ignore_list)
